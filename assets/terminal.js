@@ -63,7 +63,7 @@ const files = {
     clearance: 3,
     title: 'MIRROR SEED / PRES-Z',
     stamp: 'ROOT ROUTE OPEN',
-    body: `Mirror Seed contains no executive authority. It is a verification key proving that surviving copies descend from the final Noblecrest archive.\n\nAuthorized mirrors recorded in 2013: NOBLECREST-04, NC14-CIVIC, CIS-LEGACY-2, VAL-OBS-1.\n\nOne modern mirror is responding without a recognized signature.`
+    body: `Mirror Seed contains no executive authority. It is a verification key proving that surviving copies descend from the final Noblecrest archive.\n\nAuthorized mirrors recorded in the final archive: NOBLECREST-04, NC14-CIVIC, CIS-LEGACY-2, VAL-OBS-1.\n\nOne modern mirror is responding without a recognized signature.`
   }
 };
 
@@ -86,7 +86,7 @@ const nodes = {
 };
 
 const mail = [
-  { id: '01', c: 0, from: 'records@ncn-gov.nc', subject: 'Archive duplication order', body: 'All provincial offices must retain a local copy of civil registers before 18 April.' },
+  { id: '01', c: 0, from: 'records@ncn-gov.nc', subject: 'Archive duplication order', body: 'All provincial offices must retain a local copy of civil registers before the next transfer window.' },
   { id: '02', c: 1, from: 'relay14@ncn-gov.nc', subject: 'Carrier anomaly', body: 'The twelve-second tone is not random. It repeats whenever the northern platform circuit closes.' },
   { id: '03', c: 2, from: 'presidium@ncn-gov.nc', subject: 'Continuity is not restoration', body: 'Preservation of records does not authorize anyone to revive the state or speak in its name.' },
   { id: '04', c: 3, from: 'pres-z@localhost', subject: 'Unsigned mirror', body: 'A node calling itself NOBLE-RETURN has requested the seed. Signature mismatch. Do not answer.' }
@@ -139,7 +139,7 @@ function statusObject() {
     ok: true,
     node: 'NOBLECREST-ARCHIVE-04',
     mode: 'STATIC MIRROR RECONSTRUCTION',
-    archiveDate: '2013-04-17',
+    capture: 'UNDATED ARCHIVE MIRROR',
     clearance: level,
     mirrored: true,
     network: 'SIMULATED FROM RECOVERED RECORDS',
@@ -162,7 +162,6 @@ TRACE <node>            Reconstruct a route trace
 LOGS [system|relay]     Read simulated service logs
 MAIL                    List readable archived messages
 READMAIL <id>           Read an archived message
-DATE                    Display archive and local dates
 HISTORY                 Show recent commands
 CLEAR                   Clear terminal
 LOGOUT                  Clear archive authorization
@@ -237,10 +236,10 @@ function traceNode(node) {
 function boot() {
   out.innerHTML = '';
   block('NCN CIVIL ARCHIVE TERMINAL 3.1.7');
-  block('Copyright 2011 Northern Confederate Nations');
+  block('Northern Confederate Nations Civil Systems');
   block('Recovered Noblecrest command interpreter');
   block('--------------------------------------------');
-  block(`NODE: NOBLECREST-ARCHIVE-04\nARCHIVE CAPTURE: 2013-04-17\nSESSION CLEARANCE: ${level}\nNETWORK MODE: STATIC RECONSTRUCTION\n`);
+  block(`NODE: NOBLECREST-ARCHIVE-04\nARCHIVE CAPTURE: UNDATED MIRROR\nSESSION CLEARANCE: ${level}\nNETWORK MODE: STATIC RECONSTRUCTION\n`);
   block('Type HELP for available commands.');
 }
 
@@ -258,7 +257,7 @@ function run(raw) {
   if (cmd === 'HISTORY') return block(JSON.parse(localStorage.getItem('ncn_history') || '[]').join('\n') || 'No command history.');
   if (cmd === 'STATUS') return block(JSON.stringify(statusObject(), null, 2));
   if (cmd === 'WHOAMI') return block(`USER: ${level ? `ARCHIVE-CLEARANCE-${level}` : 'PUBLIC-MIRROR'}\nNODE: NOBLECREST-ARCHIVE-04\nAUTHORITY: historical reconstruction only`);
-  if (cmd === 'DATE') return block(`ARCHIVE DATE: 17 APRIL 2013\nLOCAL DATE: ${new Date().toString()}`);
+  if (cmd === 'DATE') return block('No calendar metadata was preserved in this archive mirror.');
   if (cmd === 'AUTH') {
     if (!arg) return line('USAGE: AUTH <passphrase>');
     const next = authorizationLevel(arg);

@@ -1,6 +1,6 @@
 # NCN Archived Website — GitHub Pages Edition
 
-This is a completely static early-2010s website and ARG for the former NCN.
+This is a completely static retro government website and ARG for the former NCN.
 
 - **Northern Confederation of Noble** was the smaller, earlier state centered on Noble.
 - **Northern Confederate Nations** was the title used at the NCN's greatest territorial size.
